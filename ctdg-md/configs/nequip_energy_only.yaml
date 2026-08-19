@@ -1,0 +1,21 @@
+# NequIP energy-only same-target comparator. Adapt top-level trainer keys only if
+# required by the exact installed NequIP release; scientific/data keys must not change.
+run_name: misato_nequip
+root: outputs/external/nequip
+seed: 11
+dataset: ase
+dataset_file_name: outputs/external/export/train.extxyz
+validation_dataset: ase
+validation_dataset_file_name: outputs/external/export/val.extxyz
+chemical_symbols: [H, C, N, O, F, P, S, Cl, Br, I]
+r_max: 5.0
+num_layers: 4
+l_max: 2
+num_features: 64
+batch_size: 4
+max_epochs: 50
+early_stopping_patiences: {validation_loss: 7}
+loss_coeffs: {total_energy: 1.0}
+metrics_components:
+  - [total_energy, mae]
+dataset_key_mapping: {REF_energy: total_energy}

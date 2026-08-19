@@ -1,0 +1,21 @@
+# MACE must be installed from its official project. MISATO supplies interaction
+# energies but no per-atom forces; this is an energy-only, same-target comparator.
+name: misato_mace
+model: MACE
+train_file: outputs/external/export/train.extxyz
+valid_file: outputs/external/export/val.extxyz
+test_file: outputs/external/export/test.extxyz
+energy_key: REF_energy
+forces_key: null
+loss: energy
+energy_weight: 1.0
+forces_weight: 0.0
+E0s: average
+hidden_irreps: 128x0e + 128x1o
+r_max: 5.0
+batch_size: 4
+max_num_epochs: 50
+patience: 7
+seed: 11
+default_dtype: float32
+device: cuda

@@ -1,0 +1,70 @@
+seed: 42
+device: auto
+
+data:
+  root: data
+  hdf5: data/MISATO_1000/raw/MD.hdf5
+  split_dir: data/MISATO_1000/raw
+  train_complexes: 80
+  val_complexes: 10
+  test_complexes: 10
+  frames_per_complex: 100
+  window_size: 10
+  stride: 10
+  dt_ps: 80.0
+  pocket_cutoff_angstrom: 8.0
+  max_nodes: 256
+  remove_hydrogen: true
+  energy_key: frames_interaction_energy
+  state_key: frames_rmsd_ligand
+
+model:
+  name: ctdg_tvn
+  hidden_dim: 96
+  num_layers: 3
+  message_dim: 96
+  radial_basis: 16
+  cutoff_angstrom: 5.0
+  max_neighbors: 32
+  time_dim: 24
+  patch_size: 5
+  fourier_dropout: 0.05
+  num_virtual_nodes: 2
+  vn_kmeans_iterations: 10
+  vn_tolerance: 0.01
+  coordinate_scale: 0.1
+  dropout: 0.05
+
+training:
+  epochs: 50
+  batch_size: 2
+  learning_rate: 0.0001
+  weight_decay: 0.00001
+  segment_length: 5
+  grad_clip: 1.0
+  patience: 7
+  num_workers: 0
+  energy_loss_weight: 1.0
+  state_loss_weight: 0.25
+  force_balance_weight: 0.001
+  torque_balance_weight: 0.001
+  temporal_smoothness_weight: 0.0001
+  physics_every: 4
+  checkpoint_dir: outputs/checkpoints
+  result_dir: outputs
+
+ablation:
+  variants: [constant, schnet, painn, egnn, egnn_tvn, ctdg, ctdg_tvn]
+  seeds: [11, 22, 33, 44, 55]
+
+publication:
+  candidate: ctdg_tvn
+  required_baselines: [constant, schnet, painn, egnn, egnn_tvn, ctdg]
+  external_required: [mace, nequip, neuralmd, gromacs_mmgbsa]
+  external_result_dir: outputs/external
+  min_seeds: 5
+  bootstrap_replicates: 10000
+  confidence: 0.95
+  familywise_alpha: 0.05
+  require_positive_r2: true
+  force_label_key: frames_forces

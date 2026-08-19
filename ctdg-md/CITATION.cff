@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+title: CTDG-MD
+message: "If you use this software, cite CTDG-MD and the upstream MISATO, EGNN, TGN, and Virtual Nodes Go Temporal works listed in the README."
+type: software
+version: 2.0.0
+date-released: 2026-08-15
+license: MIT
