@@ -1,6 +1,6 @@
 # CTDG-MD
 
-A runnable research project for **protein–ligand molecular-dynamics analysis and interaction-energy prediction** using:
+A research project for **protein–ligand molecular-dynamics analysis and interaction-energy prediction** using:
 
 - an E(n)-equivariant graph neural network (EGNN),
 - a continuous-time dynamic graph (CTDG) memory,
