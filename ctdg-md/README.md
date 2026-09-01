@@ -6,7 +6,7 @@ A research project for **protein–ligand molecular-dynamics analysis and intera
 - a continuous-time dynamic graph (CTDG) memory,
 - non-stationary patch Fourier temporal encoding,
 - segmented truncated backpropagation through time (TBPTT),
-- k-temporal virtual nodes (k-TVNs) based on the attached *Virtual Nodes Go Temporal* paper,
+- k-temporal virtual nodes (k-TVNs)
 - physics-informed force/torque balance regularization, and
 - a four-way EGNN/CTDG/TVN ablation with energy MAE/RMSE/R², AUC, accuracy, AMI, and a pairwise AMI matrix.
 
